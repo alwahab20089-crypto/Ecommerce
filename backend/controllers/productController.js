@@ -1,6 +1,6 @@
 
 import Product from "../models/Product.js";
-import Category from "../models/Category.js";
+import Category from "../models/category.js";
 import Brand from "../models/Brand.js";
 import recalculateRatings from "../utils/recalculateRatings.js";
 
