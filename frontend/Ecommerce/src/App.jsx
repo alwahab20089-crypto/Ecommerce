@@ -22,7 +22,7 @@ import AdminProductsPage from "./pages/admin/AdminProductsPage";
 import AdminProductFormPage from "./pages/admin/AdminProductFormPage";
 import AdminCategoriesPage from "./pages/admin/AdminCategoriesPage";
 import ContactPage from "./pages/ContactPage";
-import About from "./pages/about";
+import About from "./pages/About";
 import AdminBrandsPage from "./pages/admin/AdminBrandsPage";
 import ForgotPasswordPage from "./pages/ForgotPasswordPage";
 import TermsPage from "./pages/TermsPage";
