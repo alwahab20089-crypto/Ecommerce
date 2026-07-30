@@ -2,6 +2,7 @@ import { useState } from "react";
 import { FaStar } from "react-icons/fa";
 import { useQueryClient } from "@tanstack/react-query";
 import useDeleteReview from "../../hooks/useDeleteReview";
+import { toast } from "react-toastify";
 
 const ReviewCard = ({ review, onUpdate }) => {
   const [isEditing, setIsEditing] = useState(false);
@@ -21,8 +22,7 @@ const ReviewCard = ({ review, onUpdate }) => {
       review._id,
       {
         onSuccess: (product) => {
-          alert("Review deleted successfully");
-
+          toast.success("Review deleted successfully!");
           queryClient.setQueryData(
             ["product", product.slug],
             product
@@ -30,7 +30,7 @@ const ReviewCard = ({ review, onUpdate }) => {
         },
 
         onError: (error) => {
-          alert(
+          toast.error(
             error.response?.data?.message ||
             "Failed to delete review"
           );
@@ -69,8 +69,8 @@ const ReviewCard = ({ review, onUpdate }) => {
               >
                 <FaStar
                   className={`text-3xl ${star <= rating
-                      ? "text-yellow-500"
-                      : "text-gray-300"
+                    ? "text-yellow-500"
+                    : "text-gray-300"
                     }`}
                 />
               </button>

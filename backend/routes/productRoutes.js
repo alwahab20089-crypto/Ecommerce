@@ -14,10 +14,11 @@ router.route("/")
 
 router.get("/admin/list", protect, admin, getAdminProducts); // <-- new, before /:slug
 
-router.route("/:id/reviews")
-  .post(protect, createProductReview)
-  .put(protect, updateProductReview)
-  .delete(protect, deleteProductReview);
+router.post("/:id/reviews", protect, createProductReview);
+
+router.put("/reviews/:reviewId", protect, updateProductReview);
+
+router.delete("/reviews/:reviewId", protect, deleteProductReview);
 
 router.route("/:slug")
   .get(getProduct)
