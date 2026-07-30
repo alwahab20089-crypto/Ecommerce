@@ -3,24 +3,68 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { ArrowRight, Sparkles, Star } from "lucide-react";
 
-// Default stats shown until real data arrives (or if none is ever provided).
 const DEFAULT_STATS = [
-  { label: "Happy Customers", value: "50K+" },
-  { label: "Luxury Products", value: "500+" },
-  { label: "Summer Discounts", value: "70%" },
+  { label: "Happy Customers", value: "0+" },
+  { label: "Luxury Products", value: "0+" },
+  { label: "Summer Discounts", value: "0%" },
 ];
+const useCountUp = (target, duration = 1400) => {
+  const [value, setValue] = useState(0);
+
+  useEffect(() => {
+    let raf;
+    let startTime;
+
+    const step = (time) => {
+      if (!startTime) startTime = time;
+
+      const progress = Math.min((time - startTime) / duration, 1);
+
+      setValue(Math.floor(progress * target));
+
+      if (progress < 1) {
+        raf = requestAnimationFrame(step);
+      }
+    };
+
+    raf = requestAnimationFrame(step);
+
+    return () => cancelAnimationFrame(raf);
+  }, [target, duration]);
+
+  return value;
+};
+const Stat = ({ value, label }) => {
+  const number = parseInt(value);
+
+  const animated = useCountUp(isNaN(number) ? 0 : number);
+
+  const suffix = value.includes("%")
+    ? "%"
+    : value.includes("K")
+      ? "K+"
+      : "+";
+
+  return (
+    <div className="px-6 first:pl-0 text-center lg:text-left">
+      <h2 className="text-3xl md:text-4xl font-bold text-yellow-500">
+        {animated}
+        {suffix}
+      </h2>
+
+      <p className="mt-1 text-sm text-gray-400">
+        {label}
+      </p>
+    </div>
+  );
+};
 
 export default function Hero({
   shopNowPath = "/shop",
   exploreCollectionPath = "/shop",
-  // Simplest option: point this at your API and Hero will axios.get it on mount.
-  // Expects the response body to be [{ label, value }, { label, value }, { label, value }]
-  // e.g. statsEndpoint="/api/stats"
+
   statsEndpoint,
-  // Escape hatch for custom logic (auth headers, different shape, etc).
-  // Pass an async function that resolves to [{ label, value }, ...]
-  // e.g. () => axios.get("/api/stats", { headers: {...} }).then(r => r.data)
-  // If both statsEndpoint and fetchStats are given, fetchStats wins.
+
   fetchStats,
 }) {
   const navigate = useNavigate();
@@ -30,8 +74,8 @@ export default function Hero({
     const loadStats = fetchStats
       ? fetchStats
       : statsEndpoint
-      ? () => axios.get(statsEndpoint).then((res) => res.data)
-      : null;
+        ? () => axios.get(statsEndpoint).then((res) => res.data)
+        : null;
 
     if (!loadStats) return;
 
@@ -39,9 +83,22 @@ export default function Hero({
 
     loadStats()
       .then((data) => {
-        if (!cancelled && Array.isArray(data) && data.length) {
-          setStats(data);
-        }
+        if (cancelled) return;
+
+        setStats([
+          {
+            label: "Happy Customers",
+            value: `${data.totalCustomers}+`,
+          },
+          {
+            label: "Luxury Products",
+            value: `${data.totalProducts}+`,
+          },
+          {
+            label: "Summer Discounts",
+            value: `${data.maxDiscount}%`,
+          },
+        ]);
       })
       .catch((err) => {
         console.error("Failed to load hero stats, falling back to defaults:", err);
@@ -139,11 +196,12 @@ export default function Hero({
             className="motion-safe:opacity-0 motion-safe:animate-[fadeUp_0.7s_ease_forwards] mt-16 flex divide-x divide-yellow-500/20"
             style={{ animationDelay: "480ms" }}
           >
-            {stats.map(({ value, label }) => (
-              <div key={label} className="px-6 first:pl-0 text-center lg:text-left">
-                <h2 className="text-3xl md:text-4xl font-bold text-yellow-500">{value}</h2>
-                <p className="mt-1 text-sm text-gray-400">{label}</p>
-              </div>
+            {stats.map((stat) => (
+              <Stat
+                key={stat.label}
+                value={stat.value}
+                label={stat.label}
+              />
             ))}
           </div>
         </div>

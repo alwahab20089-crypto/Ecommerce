@@ -88,13 +88,13 @@ const Shop = () => {
     });
   };
   const [isFilterOpen, setIsFilterOpen] = useState(false);
-  
-const [stats, setStats] = useState(null);
-useEffect(() => {
-  getShopStats().then((data) => {
-    setStats(data);
-  });
-}, []);
+
+  const [stats, setStats] = useState(null);
+  useEffect(() => {
+    getShopStats().then((data) => {
+      setStats(data);
+    });
+  }, []);
 
   const { data: categoriesData, isLoading: categoriesLoading } = useCategories();
   const { data: brandsData, isLoading: brandsLoading } = useBrands();
@@ -247,7 +247,10 @@ useEffect(() => {
               >
                 Shop Now
               </button>
-              <button className="border border-white/25 px-8 py-3.5 rounded-full font-medium text-white/90 backdrop-blur-sm transition-all duration-300 hover:border-[#D8B978]/60 hover:text-[#E8D3A0] hover:bg-white/5">
+              <button
+                onClick={scrollToProducts}
+                className="border border-white/25 px-8 py-3.5 rounded-full font-medium text-white/90 backdrop-blur-sm transition-all duration-300 hover:border-[#D8B978]/60 hover:text-[#E8D3A0] hover:bg-white/5"
+              >
                 View Lookbook
               </button>
             </div>
@@ -255,25 +258,25 @@ useEffect(() => {
             {/* Stats */}
             <div ref={statsRef} className="mt-14 flex flex-wrap gap-12">
               <Stat
-  end={stats?.totalProducts || 0}
-  suffix="+"
-  label="Premium Products"
-  start={statsVisible}
-/>
+                end={stats?.totalProducts || 0}
+                suffix="+"
+                label="Premium Products"
+                start={statsVisible}
+              />
 
-<Stat
-  end={stats?.totalCustomers || 0}
-  suffix="+"
-  label="Happy Customers"
-  start={statsVisible}
-/>
+              <Stat
+                end={stats?.totalCustomers || 0}
+                suffix="+"
+                label="Happy Customers"
+                start={statsVisible}
+              />
 
-<Stat
-  end={stats?.totalOrders || 0}
-  suffix="+"
-  label="Orders Delivered"
-  start={statsVisible}
-/>
+              <Stat
+                end={stats?.totalOrders || 0}
+                suffix="+"
+                label="Orders Delivered"
+                start={statsVisible}
+              />
             </div>
           </div>
 
@@ -318,9 +321,8 @@ useEffect(() => {
           {/* Products */}
           <main
             ref={productsRef}
-            className={`lg:col-span-3 transition-opacity duration-300 ${
-              isLoading ? "opacity-60" : "opacity-100"
-            }`}
+            className={`lg:col-span-3 transition-opacity duration-300 ${isLoading ? "opacity-60" : "opacity-100"
+              }`}
           >
             <ProductGrid products={data?.products || []} loading={isLoading} />
             <Pagination
