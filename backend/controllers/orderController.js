@@ -46,11 +46,19 @@ export const createOrder = asyncHandler(async (req, res) => {
     for (const item of cart.items) {
       const product = item.product;
 
-      if (!product || product.status !== "Published") {
-        res.status(400);
-        throw new Error(`"${product?.name || "A product"}" is no longer available`);
-      }
+console.log("================================");
+console.log("Cart Product:", product);
+console.log("Product ID:", item.product?._id);
+console.log("Product Status:", item.product?.status);
+console.log("Original Item:", item);
 
+if (!product) {
+  throw new Error("PRODUCT IS NULL");
+}
+
+if (product.status !== "Published") {
+  throw new Error(`STATUS IS ${product.status}`);
+}
       let variant = null;
       let query, update;
 
