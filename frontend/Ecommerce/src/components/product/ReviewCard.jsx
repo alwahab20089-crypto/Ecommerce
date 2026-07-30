@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { FaStar } from "react-icons/fa";
 import { useQueryClient } from "@tanstack/react-query";
+import useDeleteReview from "../hooks/useDeleteReview";
 
 
 const ReviewCard = ({ review, onUpdate }) => {
   const [isEditing, setIsEditing] = useState(false);
   const queryClient = useQueryClient();
+  const { mutate } = useDeleteReview();
 
   const [rating, setRating] = useState(review.rating);
   const [comment, setComment] = useState(review.comment);
