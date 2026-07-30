@@ -3,6 +3,12 @@ import ReviewForm from "./ReviewForm";
 
 const ReviewsTab = ({ product }) => {
   const hasReviews = product.reviews?.length > 0;
+  const handleWriteReview = () => {
+    document.getElementById("review-form")?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  };
 
   return (
     <div>
@@ -20,7 +26,10 @@ const ReviewsTab = ({ product }) => {
           </p>
         </div>
 
-        <button className="shrink-0 bg-black text-yellow-400 px-5 sm:px-6 py-3 rounded-xl font-medium hover:bg-gray-900 transition-all duration-300">
+        <button
+          onClick={handleWriteReview}
+          className="shrink-0 bg-black text-yellow-400 px-5 sm:px-6 py-3 rounded-xl font-medium hover:bg-gray-900 transition-all duration-300"
+        >
           Write a review
         </button>
       </div>

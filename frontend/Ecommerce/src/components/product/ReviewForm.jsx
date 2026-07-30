@@ -38,6 +38,7 @@ const ReviewForm = ({ product }) => {
 
   return (
     <form
+      id="review-form"
       onSubmit={submitHandler}
       className="relative border border-gray-200 rounded-2xl p-6 sm:p-8 shadow-sm overflow-hidden"
     >
@@ -64,11 +65,10 @@ const ReviewForm = ({ product }) => {
               aria-label={`Rate ${star} star${star > 1 ? "s" : ""}`}
             >
               <FaStar
-                className={`text-2xl sm:text-3xl transition-all duration-150 ${
-                  star <= (hoverRating || rating)
+                className={`text-2xl sm:text-3xl transition-all duration-150 ${star <= (hoverRating || rating)
                     ? "text-yellow-500"
                     : "text-gray-300"
-                }`}
+                  }`}
               />
             </button>
           ))}
