@@ -62,8 +62,12 @@ const ReviewsTab = ({ product }) => {
       {/* Reviews list */}
       <div className="mt-8 sm:mt-10 space-y-6">
         {hasReviews ? (
-          product.reviews.map((review) => (
-            <ReviewCard key={review._id} review={review} />
+           product.reviews.map((review) => (
+    <ReviewCard
+      key={review._id}
+      review={review}
+      onUpdate={handleUpdate}
+    />
           ))
         ) : (
           <div className="text-center py-12 sm:py-16 border border-dashed border-gray-200 rounded-2xl">
