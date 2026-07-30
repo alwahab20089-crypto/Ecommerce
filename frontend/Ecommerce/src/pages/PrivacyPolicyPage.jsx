@@ -95,11 +95,15 @@ const PrivacyPolicyPage = () => {
           </p>
           <p className="text-gray-700">
             Email:{" "}
-            <a href="mailto:support@trendcart.com" className="text-yellow-600 hover:underline">
-              support@trendcart.com
-            </a>
+           <a href="https://mail.google.com/mail/?view=cm&fs=1&to=alwahab20089@gmail.com"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="hover:text-yellow-500 transition break-all"
+  >
+    alwahab20089@gmail.com
+  </a>
           </p>
-          <p className="text-gray-700">Phone: +1 (000) 000-0000</p>
+          <p className="text-gray-700">Phone: +92 334 7543747</p>
         </section>
       </div>
     </div>
