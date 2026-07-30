@@ -42,7 +42,7 @@ export default function Home() {
 
         <section className="relative overflow-hidden bg-black rounded-[48px] px-10 py-14 md:py-16 text-white mb-12">
           <div className="absolute -top-24 -right-20 w-80 h-80 rounded-full bg-yellow-500/10 blur-[130px]" />
-          <Hero />
+          <Hero statsEndpoint="/api/stats" />
         </section>
 
         <Categories />
