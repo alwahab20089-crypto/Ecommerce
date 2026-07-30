@@ -8,7 +8,7 @@ import FlashSale from "../components/FlashSale";
 import FeaturedProducts from "../components/FeaturedProducts";
 import Offers from "../components/Offers";
 import BestSellers from "../components/BestSellers";
-import NewArrivals from "../components/NewArrivals"; 
+import NewArrivals from "../components/NewArrivals";
 import WhyUs from "../components/WhyUs";
 import Reviews from "../components/Reviews";
 import Newsletter from "../components/Newsletter";
@@ -42,7 +42,7 @@ export default function Home() {
 
         <section className="relative overflow-hidden bg-black rounded-[48px] px-10 py-14 md:py-16 text-white mb-12">
           <div className="absolute -top-24 -right-20 w-80 h-80 rounded-full bg-yellow-500/10 blur-[130px]" />
-          <Hero statsEndpoint="/api/stats" />
+          <Hero statsEndpoint="https://trendcart-segh.onrender.com/api/stats" />
         </section>
 
         <Categories />
