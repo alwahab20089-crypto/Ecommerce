@@ -39,12 +39,13 @@ const ReviewCard = ({ review, onUpdate }) => {
     );
   };
 
-  const saveHandler = () => {
-    onUpdate({
-      reviewId: review._id,
-      rating,
-      comment,
-    });
+  {product.reviews.map((review) => (
+  <ReviewCard
+    key={review._id}
+    review={review}
+    onUpdate={handleUpdate}
+  />
+))
 
     setIsEditing(false);
   };

@@ -1,14 +1,39 @@
 import ReviewCard from "./ReviewCard";
 import ReviewForm from "./ReviewForm";
+import useUpdateReview from "../../hooks/useUpdateReview";
+import { toast } from "react-toastify";
 
 const ReviewsTab = ({ product }) => {
   const hasReviews = product.reviews?.length > 0;
+  const { mutate } = useUpdateReview();
   const handleWriteReview = () => {
     document.getElementById("review-form")?.scrollIntoView({
       behavior: "smooth",
       block: "start",
     });
   };
+  const handleUpdate = ({ reviewId, rating, comment }) => {
+  mutate(
+    {
+      reviewId,
+      reviewData: {
+        rating,
+        comment,
+      },
+    },
+    {
+      onSuccess: () => {
+        toast.success("Review updated successfully!");
+      },
+      onError: (error) => {
+        toast.error(
+          error.response?.data?.message ||
+          "Failed to update review"
+        );
+      },
+    }
+  );
+};
 
   return (
     <div>
