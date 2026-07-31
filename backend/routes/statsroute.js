@@ -41,7 +41,6 @@ router.get("/stats", async (req, res) => {
   }
 });
 
-// Formats a raw count into a compact display string, e.g. 12500 -> "12.5K+"
 function formatCount(n) {
   if (n >= 1000) {
     return `${(n / 1000).toFixed(1).replace(/\.0$/, "")}K+`;

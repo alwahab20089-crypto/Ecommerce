@@ -193,7 +193,11 @@ export default function Hero({
 
           {/* Stats — editorial strip instead of a boxed grid */}
           <div
-            className="motion-safe:opacity-0 motion-safe:animate-[fadeUp_0.7s_ease_forwards] mt-16 flex divide-x divide-yellow-500/20"
+            className="motion-safe:opacity-0 motion-safe:animate-[fadeUp_0.7s_ease_forwards]
+             mt-12 flex flex-col sm:flex-row
+             divide-y sm:divide-y-0 sm:divide-x
+             divide-yellow-500/20
+             w-full max-w-md sm:max-w-none"
             style={{ animationDelay: "480ms" }}
           >
             {stats.map((stat) => (
