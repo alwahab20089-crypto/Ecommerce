@@ -219,7 +219,7 @@ export default function Hero({
 
           <div className="group relative rounded-[2rem] border border-yellow-500/30 overflow-hidden aspect-[4/5] shadow-2xl shadow-yellow-500/10">
             <img
-              src="https://media.canva.com/v2/image-resize/format:JPG/height:1456/quality:92/uri:ifs%3A%2F%2FM%2F55637e21-94dd-4db1-b71e-f9bd492a9894/watermark:F/width:1088?csig=AAAAAAAAAAAAAAAAAAAAAFL8YQtvhCe7QWSAHhM1zKXOkQx2Ohcj8ztlzr33LhpO&exp=1785440403&osig=AAAAAAAAAAAAAAAAAAAAAG8dWbPNp1ZiCBlNamfHbtqdz4igmlPevp0ZaxTC5k74&signer=media-rpc&x-canva-quality=screen_3x"
+            src="/Trendcart hero.jpg"
               alt="Featured piece from the luxury collection"
               className="h-full w-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-110"
             />
